@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <style>
+        .active {
+            display: block;
+        }
+
+        .inactive {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-inter">
+    <header class="bg-blue-500 text-white py-4 flex justify-between items-center shadow-md sticky top-0 z-10 rounded-md">
+        <div class="logo text-xl font-bold ml-4">My Store</div>
+        <nav class="mr-4">
+            <ul class="flex space-x-4">
+                <li><a href="#home" class="hover:text-blue-300 no-underline">Home</a></li>
+                <li><a href="#products" class="hover:text-blue-300 no-underline">Products</a></li>
+                <li><a href="#cart" class="hover:text-blue-300 no-underline">Cart</a></li>
+                <li><a href="#about" class="hover:text-blue-300 no-underline">About</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger md:hidden mr-4 cursor-pointer" id="hamburger-btn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 z-20">
+        <div class="bg-gray-800 w-80 h-full absolute right-0 p-6">
+            <div class="close-btn text-white text-2xl font-bold absolute top-4 right-4 cursor-pointer" id="close-menu-btn">
+                &times;
+            </div>
+            <nav class="mt-20">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="#home" class="text-white text-lg hover:text-blue-300 no-underline">Home</a></li>
+                    <li><a href="#products" class="text-white text-lg hover:text-blue-300 no-underline">Products</a></li>
+                    <li><a href="#cart" class="text-white text-lg hover:text-blue-300 no-underline">Cart</a></li>
+                     <li><a href="#about" class="text-white text-lg hover:text-blue-300 no-underline">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <section id="home" class="section active flex flex-col items-center justify-center py-16">
+        <h2 class="text-4xl font-semibold text-blue-600 mb-4 text-center">Welcome to Our Store</h2>
+        <p class="text-lg text-gray-700 text-center max-w-2xl">Discover the best products at amazing prices. Your one-stop shop for all your needs.</p>
+    </section>
+
+    <section id="products" class="section inactive py-16">
+        <h2 class="text-3xl font-semibold text-blue-600 text-center mb-8">Our Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="product-card bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Product 1</h3>
+                <p class="text-gray-600 mb-2">Description of Product 1.</p>
+                <p class="text-lg font-bold text-blue-500 mb-2">$25.00</p>
+                <button class="add-to-cart-btn bg-yellow-500 hover:bg-yellow-700 text-gray-800 font-bold py-2 px-4 rounded">Add to Cart</button>
+            </div>
+            <div class="product-card bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Product 2</h3>
+                <p class="text-gray-600 mb-2">Description of Product 2.</p>
+                <p class="text-lg font-bold text-blue-500 mb-2">$30.00</p>
+                <button class="add-to-cart-btn bg-yellow-500 hover:bg-yellow-700 text-gray-800 font-bold py-2 px-4 rounded">Add to Cart</button>
+            </div>
+            <div class="product-card bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Product 3</h3>
+                <p class="text-gray-600 mb-2">Description of Product 3.</p>
+                <p class="text-lg font-bold text-blue-500 mb-2">$45.00</p>
+                <button class="add-to-cart-btn bg-yellow-500 hover:bg-yellow-700 text-gray-800 font-bold py-2 px-4 rounded">Add to Cart</button>
+            </div>
+            <div class="product-card bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Product 4</h3>
+                <p class="text-gray-600 mb-2">Description of Product 4.</p>
+                <p class="text-lg font-bold text-blue-500 mb-2">$20.00</p>
+                <button class="add-to-cart-btn bg-yellow-500 hover:bg-yellow-700 text-gray-800 font-bold py-2 px-4 rounded">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" class="section inactive py-16">
+        <h2 class="text-3xl font-semibold text-blue-600 text-center mb-8">Your Cart</h2>
+        <div id="cart-items" class="max-w-3xl mx-auto">
+            <p class="text-gray-700 text-center">Your cart is empty.</p>
+        </div>
+        <div id="cart-summary" class="max-w-3xl mx-auto mt-6 bg-white rounded-lg shadow-md p-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Cart Summary</h3>
+            <p class="text-gray-600">Total: $<span id="cart-total">0.00</span></p>
+             <button id="checkout-btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">Checkout</button>
+        </div>
+    </section>
+
+    <section id="about" class="section inactive py-16">
+        <h2 class="text-3xl font-semibold text-blue-600 text-center mb-8">About Us</h2>
+        <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto">We are a dedicated team passionate about providing high-quality products and excellent customer service.  Our mission is to make online shopping easy and enjoyable.</p>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-4 text-center rounded-md">
+        <p>© 2023 My E-commerce Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('nav a');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+
+        function showSection(sectionId) {
+            sections.forEach(section => section.classList.remove('active', 'inactive'));
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById(sectionId).classList.remove('inactive');
+        }
+
+        function updateActiveNavLink(sectionId) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+         function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = event.target.getAttribute('href').substring(1);
+                showSection(targetId);
+                updateActiveNavLink(targetId);
+                 if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = event.target.getAttribute('href').substring(1);
+                showSection(targetId);
+                updateActiveNavLink(targetId);
+                 if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = 'home';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            updateActiveNavLink(currentSectionId);
+        });
+
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+        closeMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // --- Cart functionality ---
+        let cart = [];
+        let total = 0;
+
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productCard = event.target.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.text-lg').textContent.replace('$', ''));
+
+                addToCart(productName, productPrice);
+                updateCartDisplay();
+                 // Show the cart section after adding the first item
+                showSection('cart');
+                updateActiveNavLink('cart');
+            });
+        });
+
+        function addToCart(productName, productPrice) {
+            const existingItem = cart.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: productName, price: productPrice, quantity: 1 });
+            }
+            total += productPrice;
+        }
+
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = ''; // Clear previous content
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-700 text-center">Your cart is empty.</p>';
+                cartTotalElement.textContent = '0.00';
+                return;
+            }
+
+            cart.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item', 'flex', 'justify-between', 'items-center', 'py-2', 'border-b', 'border-gray-200');
+                cartItemDiv.innerHTML = `
+                    <div>
+                        <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                        <p class="text-gray-600">Quantity: ${item.quantity}</p>
+                    </div>
+                    <p class="text-lg font-bold text-blue-500">$${(item.price * item.quantity).toFixed(2)}</p>
+                    <button class="remove-item-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm" data-product-name="${item.name}">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+            });
+            cartTotalElement.textContent = total.toFixed(2);
+
+            // Add event listeners to the remove buttons
+            const removeButtons = document.querySelectorAll('.remove-item-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.getAttribute('data-product-name');
+                    removeFromCart(productName);
+                    updateCartDisplay();
+                     if (cart.length === 0) {
+                         cartItemsContainer.innerHTML = '<p class="text-gray-700 text-center">Your cart is empty.</p>';
+                         cartTotalElement.textContent = '0.00';
+                     }
+                });
+            });
+        }
+
+        function removeFromCart(productName) {
+            const itemToRemoveIndex = cart.findIndex(item => item.name === productName);
+            if (itemToRemoveIndex !== -1) {
+                const itemToRemove = cart[itemToRemoveIndex];
+                 total -= (itemToRemove.price * itemToRemove.quantity);
+                cart.splice(itemToRemoveIndex, 1);
+            }
+        }
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert(`Thank you for your purchase! Your total is $${total.toFixed(2)}`);
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+             cartItemsContainer.innerHTML = '<p class="text-gray-700 text-center">Your cart is empty.</p>';
+            cartTotalElement.textContent = '0.00';
+        });
+
+        // --- Initial setup ---
+        showSection('home');
+        updateActiveNavLink('home');
+    </script>
+</body>
+</html>
